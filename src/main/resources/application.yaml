@@ -1,0 +1,41 @@
+spring:
+  config:
+    import: "optional:configserver:"
+  application:
+    name: bug-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/BugCollection
+    username: postgres
+    password: suBa4net
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+server:
+  port: 8081
